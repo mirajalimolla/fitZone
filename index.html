@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Gym - Transform Your Body</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(34, 197, 94, 0.8);
+            }
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .navbar-scroll {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-scroll.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="navbar-scroll fixed top-0 w-full z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">FitZone</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-green-400 transition-colors">Home</a>
+                <a href="#features" class="hover:text-green-400 transition-colors">Features</a>
+                <a href="#about" class="hover:text-green-400 transition-colors">About</a>
+                <a href="#gallery" class="hover:text-green-400 transition-colors">Gallery</a>
+                <a href="#contact" class="hover:text-green-400 transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-4 text-center">
+            <a href="#home" class="block hover:text-green-400 transition-colors" onclick="toggleMobileMenu()">Home</a>
+            <a href="#features" class="block hover:text-green-400 transition-colors" onclick="toggleMobileMenu()">Features</a>
+            <a href="#about" class="block hover:text-green-400 transition-colors" onclick="toggleMobileMenu()">About</a>
+            <a href="#gallery" class="block hover:text-green-400 transition-colors" onclick="toggleMobileMenu()">Gallery</a>
+            <a href="#contact" class="block hover:text-green-400 transition-colors" onclick="toggleMobileMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center">
+        <div class="text-center max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                Transform Your <span class="gradient-text">Body</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 fade-in">
+                Join FitZone and unlock your potential with state-of-the-art equipment, expert trainers, and a community that motivates you to achieve greatness.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center fade-in">
+                <button class="bg-green-500 hover:bg-green-600 px-8 py-4 rounded-full text-lg font-semibold transition-all hover-scale pulse-glow">
+                    <i class="fas fa-dumbbell mr-2"></i>
+                    Join Now
+                </button>
+                <button onclick="openWhatsApp()" class="glass-effect px-8 py-4 rounded-full text-lg font-semibold transition-all hover-scale border border-green-500">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    WhatsApp Chat
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                Why Choose <span class="gradient-text">FitZone</span>?
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 rounded-xl glass-effect hover-scale fade-in">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">24/7 Access</h3>
+                    <p class="text-gray-400">Train anytime, anywhere with our round-the-clock facility access.</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-xl glass-effect hover-scale fade-in">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-tie text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Certified Trainers</h3>
+                    <p class="text-gray-400">Expert guidance from certified fitness professionals.</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-xl glass-effect hover-scale fade-in">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cogs text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Modern Equipment</h3>
+                    <p class="text-gray-400">State-of-the-art machines and equipment for optimal workouts.</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-xl glass-effect hover-scale fade-in">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Community</h3>
+                    <p class="text-gray-400">Join a supportive community of fitness enthusiasts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        About <span class="gradient-text">FitZone</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-4">
+                        FitZone has been transforming lives for over a decade with our commitment to excellence in fitness. Our world-class facility features cutting-edge equipment, innovative training programs, and a team of dedicated professionals who are passionate about helping you achieve your goals.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-4">
+                        We believe fitness is a journey, not a destination. That's why we've created an environment where beginners feel welcome and experienced athletes can push their limits.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Join thousands of satisfied members who have made FitZone their fitness home and discover what makes us the premier destination for health and wellness.
+                    </p>
+                    <button class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-full font-semibold transition-all hover-scale">
+                        Learn More
+                    </button>
+                </div>
+                <div class="fade-in">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Modern gym interior" 
+                         class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                What Our <span class="gradient-text">Members</span> Say
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="testimonial-card p-8 rounded-xl fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                             alt="Member photo" 
+                             class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-lg">Mike Johnson</h4>
+                            <p class="text-gray-400">Member since 2022</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-lg">
+                        "FitZone completely transformed my fitness journey. The trainers are incredible, the equipment is top-notch, and the community support keeps me motivated every day. I've never felt stronger!"
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-xl fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b77c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                             alt="Member photo" 
+                             class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-lg">Sarah Williams</h4>
+                            <p class="text-gray-400">Member since 2021</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-lg">
+                        "The 24/7 access is a game-changer for my busy schedule. Whether it's 6 AM or 10 PM, FitZone is always clean, safe, and ready for my workout. Best investment I've ever made!"
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                Our <span class="gradient-text">Facility</span>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Gym equipment" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Cardio area" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Weight training" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Free weights" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1583500178690-f7d24f6bd7f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Group training" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden fade-in">
+                    <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Locker room" 
+                         class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                Book Your <span class="gradient-text">Free Trial</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6">Get Started Today</h3>
+                    <p class="text-gray-300 mb-6">
+                        Ready to transform your fitness journey? Fill out the form and we'll send your details directly via WhatsApp to get you started with a free trial session.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-green-400 mr-3"></i>
+                            <span>123 Fitness Street, Gym City, GC 12345</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-green-400 mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-green-400 mr-3"></i>
+                            <span>info@fitzone.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-green-400 mr-3"></i>
+                            <span>24/7 Open</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="glass-effect p-8 rounded-xl fade-in" onsubmit="sendWhatsAppMessage(event)">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" required
+                                   class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-green-400 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone Number</label>
+                            <input type="tel" id="phone" required
+                                   class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-green-400 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Preferred Time</label>
+                            <select id="time" required
+                                    class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-green-400 focus:outline-none transition-colors">
+                                <option value="">Select a time</option>
+                                <option value="Morning (6AM-10AM)">Morning (6AM-10AM)</option>
+                                <option value="Afternoon (10AM-4PM)">Afternoon (10AM-4PM)</option>
+                                <option value="Evening (4PM-8PM)">Evening (4PM-8PM)</option>
+                                <option value="Night (8PM-11PM)">Night (8PM-11PM)</option>
+                            </select>
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-green-500 hover:bg-green-600 py-3 rounded-lg font-semibold transition-all hover-scale">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Send via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                Find <span class="gradient-text">Us</span>
+            </h2>
+            <div class="glass-effect p-4 rounded-xl fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093747!2d144.9537353153167!3d-37.8162799797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2sau!4v1635832618705!5m2!1sen!2sau" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0; border-radius: 8px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">FitZone</h3>
+                    <p class="text-gray-400">
+                        Transform your body, transform your life. Join the fitness revolution today.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-green-400 transition-colors">Home</a>
+                        <a href="#features" class="block text-gray-400 hover:text-green-400 transition-colors">Features</a>
+                        <a href="#about" class="block text-gray-400 hover:text-green-400 transition-colors">About</a>
+                        <a href="#gallery" class="block text-gray-400 hover:text-green-400 transition-colors">Gallery</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <div class="space-y-2">
+                        <p class="text-gray-400">Personal Training</p>
+                        <p class="text-gray-400">Group Classes</p>
+                        <p class="text-gray-400">Nutrition Coaching</p>
+                        <p class="text-gray-400">24/7 Access</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-gray-700 mb-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 FitZone. All rights reserved.</p>
+                <p class="mt-2">
+                    Website by 
+                    <a href="https://freelancer-miraj-portfolio.com" 
+                       class="text-green-400 hover:text-green-300 transition-colors font-semibold">
+                        Freelancer Miraj
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" onclick="openWhatsApp()" class="whatsapp-float">
+        <div class="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors float-animation">
+            <i class="fab fa-whatsapp text-2xl text-white"></i>
+        </div>
+    </a>
+
+    <script>
+        // Fade in animation on scroll
+        function fadeInOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar-scroll');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // WhatsApp functionality
+        function openWhatsApp() {
+            const message = "Hi! I'm interested in joining your gym.";
+            const phoneNumber = "1234567890"; // Replace with actual phone number
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Send form data via WhatsApp
+        function sendWhatsAppMessage(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const time = document.getElementById('time').value;
+            
+            const message = `New Gym Registration Request:
+            
+Name: ${name}
+Phone: ${phone}
+Preferred Time: ${time}
+
+I'm interested in joining FitZone gym. Please contact me to schedule my free trial session.`;
+            
+            const phoneNumber = "9836946145"; // Replace with actual phone number
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            fadeInOnScroll();
+            handleNavbarScroll();
+        });
+
+        window.addEventListener('load', () => {
+            fadeInOnScroll();
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial fade-in for elements in viewport
+            setTimeout(() => {
+                fadeInOnScroll();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
